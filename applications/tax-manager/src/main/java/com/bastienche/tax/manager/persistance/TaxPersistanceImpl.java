@@ -7,6 +7,10 @@ public class TaxPersistanceImpl implements TaxPersistance{
 
     TaxDao taxDao;
 
+    public TaxPersistanceImpl(TaxDao taxDao) {
+        this.taxDao = taxDao;
+    }
+
     @Override
     public void createTax(Tax tax) {
         taxDao.save(TaxHelper.TaxEntityFromTax(tax));
