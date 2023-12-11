@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.bastienche.tax.management</groupId>
+		<groupId>com.bastienche.vatCredit.management</groupId>
 		<artifactId>server</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath> <!-- lookup parent from repository -->

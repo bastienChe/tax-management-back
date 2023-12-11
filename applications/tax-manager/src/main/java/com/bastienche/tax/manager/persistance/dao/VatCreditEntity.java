@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "Tax")
+@Table(name = "VatCredit")
 @EqualsAndHashCode
 @NoArgsConstructor
 @ToString
 @Getter
-public class TaxEntity {
+public class VatCreditEntity {
 
 
     @Id
     @Column(columnDefinition = "number(10)", nullable = false)
-    private long idCrem;
+    private long idVatCredit;
 
 }

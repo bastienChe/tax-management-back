@@ -5,5 +5,5 @@ import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode
 @NoArgsConstructor
-public class Tax {
+public class VatCredit {
 }

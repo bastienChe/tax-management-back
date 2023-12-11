@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.bastienche.tax.management</groupId>
+    <groupId>com.bastienche.vatCredit.management</groupId>
     <artifactId>server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tax-manager</name>
+    <name>vatCredit-manager</name>
     <description>Composant de gestion de la TVA</description>
     <packaging>pom</packaging>
 
