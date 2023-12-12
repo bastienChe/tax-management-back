@@ -1,12 +1,17 @@
 package com.bastienche.tax.manager.persistance;
 
 import com.bastienche.tax.manager.domain.VatCredit;
+import com.bastienche.tax.manager.domain.VatCreditCategory;
 import com.bastienche.tax.manager.persistance.dao.VatCreditEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+
+import java.time.LocalDateTime;
 
 public class VatCreditHelper {
 
     public static VatCreditEntity VatCreditEntityFrom(VatCredit vatCredit) {
-        return new VatCreditEntity();
+        return new VatCreditEntity(0l, vatCredit.getDate(), vatCredit.getCategory(), vatCredit.getCategoryExplanation(), vatCredit.getPrice(), vatCredit.getPicture());
     }
 
 }

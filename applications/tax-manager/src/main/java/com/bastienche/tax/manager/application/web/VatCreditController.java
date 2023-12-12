@@ -1,6 +1,7 @@
 package com.bastienche.tax.manager.application.web;
 
 import com.bastienche.tax.manager.domain.VatCreditManager;
+import com.bastienche.tax.manager.domain.exceptions.UnknownVatCreditCategoryException;
 
 public class VatCreditController {
 
@@ -10,7 +11,7 @@ public class VatCreditController {
         this.vatCreditManager = vatCreditManager;
     }
 
-    public void insert(VatCreditDto vatCreditDto) {
+    public void insert(VatCreditDto vatCreditDto) throws UnknownVatCreditCategoryException {
         vatCreditManager.insert(VatCreditDto.VatCreditDtoTo(vatCreditDto));
     }
 
