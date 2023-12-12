@@ -1,10 +1,7 @@
 package com.bastienche.tax.manager.persistance.dao;
 
 import com.bastienche.tax.manager.domain.VatCreditCategory;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -15,9 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class VatCreditEntity {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(columnDefinition = "number(10)", nullable = false)
     private long idVatCredit;
 
@@ -25,7 +24,7 @@ public class VatCreditEntity {
     private LocalDateTime date;
 
     @Column(columnDefinition = "varchar(50)", nullable = false)
-    private VatCreditCategory category;
+    private VatCreditCategoryEntity category;
 
     @Column(columnDefinition = "varchar(50)")
     private String categoryExplanation;

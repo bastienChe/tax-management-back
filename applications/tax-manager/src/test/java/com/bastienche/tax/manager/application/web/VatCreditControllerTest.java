@@ -23,11 +23,17 @@ class VatCreditControllerTest {
     VatCreditController vatCreditController;
 
     @Test
-    void insertNewTax() throws UnknownVatCreditCategoryException {
+    void insertNewVatCreditTest() throws UnknownVatCreditCategoryException {
         LocalDateTime date = LocalDateTime.of(1992, 04, 23, 10, 00, 00);
         byte[] pic = {0,1,2};
         VatCreditDto vatCreditDto = new VatCreditDto(date, VatCreditCategoryDto.ESSENCE, "explanation", 10, pic);
         vatCreditController.insert(vatCreditDto);
         Mockito.verify(vatCreditManager).insert(Mockito.eq(new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, pic)));
+    }
+
+    @Test
+    void getNewVatCreditTest() throws UnknownVatCreditCategoryException {
+        vatCreditController.get("5");
+        Mockito.verify(vatCreditManager).get(Mockito.eq("5"));
     }
 }

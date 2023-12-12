@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 class VatCreditDtoTest {
 
     @Test
-    void taxDtoTo() throws UnknownVatCreditCategoryException {
+    void VatCreditDtoToTest() throws UnknownVatCreditCategoryException {
         LocalDateTime date = LocalDateTime.of(1992, 04, 23, 10, 00, 00);
         byte[] pic = {0,1,2};
 

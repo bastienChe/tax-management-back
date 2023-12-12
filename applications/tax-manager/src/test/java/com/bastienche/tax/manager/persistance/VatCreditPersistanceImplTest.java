@@ -2,6 +2,7 @@ package com.bastienche.tax.manager.persistance;
 
 import com.bastienche.tax.manager.domain.VatCredit;
 import com.bastienche.tax.manager.domain.VatCreditCategory;
+import com.bastienche.tax.manager.domain.exceptions.UnknownVatCreditCategoryException;
 import com.bastienche.tax.manager.persistance.dao.VatCreditDao;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,14 +21,20 @@ class VatCreditPersistanceImplTest {
     VatCreditDao vatCreditDao;
 
     @InjectMocks
-    VatCreditPersistanceImpl taxPersistance;
+    VatCreditPersistanceImpl vatCreditPersistance;
 
     @Test
-    void createTax() {
+    void createVatCreditTest() throws UnknownVatCreditCategoryException {
         LocalDateTime date = LocalDateTime.of(1992, 04, 23, 10, 00, 00);
         byte[] pic = {0,1,2};
         VatCredit vatCredit = new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, pic);
-        taxPersistance.create(vatCredit);
+        vatCreditPersistance.create(vatCredit);
         Mockito.verify(vatCreditDao).save(VatCreditHelper.VatCreditEntityFrom(vatCredit));
+    }
+
+    @Test
+    void getVatCreditTest() {
+        vatCreditPersistance.get("5");
+        Mockito.verify(vatCreditDao).findById(Mockito.eq("5"));
     }
 }
