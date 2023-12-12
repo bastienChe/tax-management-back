@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class VatCreditHelper {
 
     public static VatCreditEntity VatCreditEntityFrom(VatCredit vatCredit) {
-        return new VatCreditEntity(0l, vatCredit.getDate(), vatCredit.getCategory(), vatCredit.getCategoryExplanation(), vatCredit.getPrice(), vatCredit.getPicture());
+        return new VatCreditEntity(0l, vatCredit.date(), vatCredit.category(), vatCredit.categoryExplanation(), vatCredit.price(), vatCredit.picture());
     }
 
 }

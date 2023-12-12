@@ -1,30 +1,15 @@
 package com.bastienche.tax.manager.application.web;
 
-import com.bastienche.tax.manager.domain.VatCredit;
 import com.bastienche.tax.manager.domain.VatCreditCategory;
+import com.bastienche.tax.manager.domain.VatCredit;
 import com.bastienche.tax.manager.domain.exceptions.UnknownVatCreditCategoryException;
-import lombok.*;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode
-@Getter
-@Setter
-@AllArgsConstructor
-public class VatCreditDto {
-
-    private LocalDateTime date;
-
-    private VatCreditCategoryDto category;
-
-    private String categoryExplanation;
-
-    private long price;
-
-    private byte[] picture;
+public record VatCreditDto(LocalDateTime date, VatCreditCategoryDto category, String categoryExplanation, long price, byte[] picture) {
 
     public static VatCredit VatCreditDtoTo(VatCreditDto vatCreditDto) throws UnknownVatCreditCategoryException {
-        return new VatCredit(vatCreditDto.getDate(), VatCreditCategory.from(vatCreditDto.getCategory()), vatCreditDto.getCategoryExplanation(), vatCreditDto.getPrice(), vatCreditDto.getPicture());
+        return new VatCredit(vatCreditDto.date, VatCreditCategory.from(vatCreditDto.category), vatCreditDto.categoryExplanation, vatCreditDto.price, vatCreditDto.picture);
     }
 
 }

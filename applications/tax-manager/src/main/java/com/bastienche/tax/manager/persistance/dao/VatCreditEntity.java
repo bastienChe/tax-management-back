@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class VatCreditEntity {
 
-
     @Id
     @Column(columnDefinition = "number(10)", nullable = false)
     private long idVatCredit;

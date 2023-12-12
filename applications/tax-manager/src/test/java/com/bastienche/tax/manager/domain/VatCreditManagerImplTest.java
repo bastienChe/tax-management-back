@@ -1,7 +1,5 @@
 package com.bastienche.tax.manager.domain;
 
-import com.bastienche.tax.manager.application.web.VatCreditCategoryDto;
-import com.bastienche.tax.manager.application.web.VatCreditDto;
 import com.bastienche.tax.manager.persistance.VatCreditPersistance;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
