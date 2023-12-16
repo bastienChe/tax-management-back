@@ -7,16 +7,20 @@ import com.bastienche.tax.manager.persistance.dao.VatCreditCategoryEntity;
 import com.bastienche.tax.manager.persistance.dao.VatCreditEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.time.LocalDate;
 
 class VatCreditHelperTest {
 
     @Test
-    void VatCreditEntityFromTest() throws UnknownVatCreditCategoryException {
-        LocalDateTime date = LocalDateTime.of(1992, 04, 23, 10, 00, 00);
-        byte[] pic = {0,1,2};
-        VatCredit vatCredit = new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, pic);
+    void VatCreditEntityFromTest() throws UnknownVatCreditCategoryException, IOException {
+        LocalDate date = LocalDate.of(1992, 04, 23);
+        byte[] pic = "Test String".getBytes();
+        MockMultipartFile multipartFile = new MockMultipartFile("tempFile", pic);
+        VatCredit vatCredit = new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, multipartFile);
 
         VatCreditEntity vatCreditEntity = new VatCreditEntity(0L, date, VatCreditCategoryEntity.ESSENCE, "explanation", 10, pic);
 

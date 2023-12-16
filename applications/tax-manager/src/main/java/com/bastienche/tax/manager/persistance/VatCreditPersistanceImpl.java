@@ -6,6 +6,7 @@ import com.bastienche.tax.manager.persistance.dao.VatCreditDao;
 import com.bastienche.tax.manager.persistance.dao.VatCreditEntity;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Component
@@ -18,7 +19,7 @@ public class VatCreditPersistanceImpl implements VatCreditPersistance {
     }
 
     @Override
-    public VatCreditEntity create(VatCredit vatCredit) throws UnknownVatCreditCategoryException {
+    public VatCreditEntity create(VatCredit vatCredit) throws UnknownVatCreditCategoryException, IOException {
        return vatCreditDao.save(VatCreditHelper.VatCreditEntityFrom(vatCredit));
     }
 

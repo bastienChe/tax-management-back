@@ -10,8 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.time.LocalDate;
 
 @ExtendWith(MockitoExtension.class)
 class VatCreditPersistanceImplTest {
@@ -24,10 +27,12 @@ class VatCreditPersistanceImplTest {
     VatCreditPersistanceImpl vatCreditPersistance;
 
     @Test
-    void createVatCreditTest() throws UnknownVatCreditCategoryException {
-        LocalDateTime date = LocalDateTime.of(1992, 04, 23, 10, 00, 00);
-        byte[] pic = {0,1,2};
-        VatCredit vatCredit = new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, pic);
+    void createVatCreditTest() throws UnknownVatCreditCategoryException, IOException {
+        LocalDate date = LocalDate.of(1992, 04, 23);
+        byte[] pic = "Test String".getBytes();
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("tempFileName", pic);
+
+        VatCredit vatCredit = new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, mockMultipartFile);
         vatCreditPersistance.create(vatCredit);
         Mockito.verify(vatCreditDao).save(VatCreditHelper.VatCreditEntityFrom(vatCredit));
     }

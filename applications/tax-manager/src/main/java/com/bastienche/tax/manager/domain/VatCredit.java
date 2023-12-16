@@ -1,7 +1,9 @@
 package com.bastienche.tax.manager.domain;
 
-import java.time.LocalDateTime;
+import org.springframework.web.multipart.MultipartFile;
 
-public record VatCredit(LocalDateTime date, VatCreditCategory category, String categoryExplanation, long price, byte[] picture) {
+import java.time.LocalDate;
+
+public record VatCredit(LocalDate date, VatCreditCategory category, String categoryExplanation, long price, MultipartFile picture) {
 
 }

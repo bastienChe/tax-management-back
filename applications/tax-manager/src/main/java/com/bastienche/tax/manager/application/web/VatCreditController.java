@@ -7,8 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDate;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/vat-credit")
 @Slf4j
 public class VatCreditController {
@@ -20,7 +28,12 @@ public class VatCreditController {
     }
 
     @PostMapping
-    public ResponseEntity<VatCreditEntity> insert(VatCreditDto vatCreditDto) throws UnknownVatCreditCategoryException {
+    public ResponseEntity<VatCreditEntity> insert( @RequestParam("price") long price,
+                                                   @RequestParam("date") String date,
+                                                   @RequestParam("category") String category,
+                                                   @RequestParam("categoryExplanation") String categoryExplanation,
+                                                   @RequestParam("file") MultipartFile file) throws UnknownVatCreditCategoryException, IOException {
+        VatCreditDto vatCreditDto = new VatCreditDto(LocalDate.parse(date), VatCreditCategoryDto.valueOf(category), categoryExplanation, price, file);
         VatCreditEntity vatCreditEntity = vatCreditManager.insert(VatCreditDto.VatCreditDtoTo(vatCreditDto));
         return new ResponseEntity<>(vatCreditEntity, HttpStatus.CREATED);
     }

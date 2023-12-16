@@ -10,8 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.time.LocalDate;
 
 @ExtendWith(MockitoExtension.class)
 class VatCreditControllerTest {
@@ -23,12 +26,17 @@ class VatCreditControllerTest {
     VatCreditController vatCreditController;
 
     @Test
-    void insertNewVatCreditTest() throws UnknownVatCreditCategoryException {
-        LocalDateTime date = LocalDateTime.of(1992, 04, 23, 10, 00, 00);
+    void insertNewVatCreditTest() throws UnknownVatCreditCategoryException, IOException {
+        LocalDate date = LocalDate.of(1992, 04, 23);
         byte[] pic = {0,1,2};
-        VatCreditDto vatCreditDto = new VatCreditDto(date, VatCreditCategoryDto.ESSENCE, "explanation", 10, pic);
-        vatCreditController.insert(vatCreditDto);
-        Mockito.verify(vatCreditManager).insert(Mockito.eq(new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, pic)));
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("tempFileName", pic);
+        long price = 10l;
+        String categoryExplanation = "explanation";
+
+        VatCreditDto vatCreditDto = new VatCreditDto(date, VatCreditCategoryDto.ESSENCE, categoryExplanation, price, mockMultipartFile);
+        vatCreditController.insert(price, "1992-04-23", "ESSENCE", categoryExplanation, mockMultipartFile);
+
+        Mockito.verify(vatCreditManager).insert(Mockito.eq(new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, mockMultipartFile)));
     }
 
     @Test
