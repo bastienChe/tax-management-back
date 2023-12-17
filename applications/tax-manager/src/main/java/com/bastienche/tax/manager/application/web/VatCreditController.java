@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -39,8 +40,16 @@ public class VatCreditController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VatCreditEntity> get(@PathVariable String id) throws UnknownVatCreditCategoryException {
+    public ResponseEntity<VatCreditEntity> getId(@PathVariable String id) throws UnknownVatCreditCategoryException {
         VatCreditEntity vatCreditEntity = vatCreditManager.get(id);
+        return vatCreditEntity != null ?
+                new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
+                new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<VatCreditEntity>> get() throws UnknownVatCreditCategoryException {
+        List<VatCreditEntity> vatCreditEntity = vatCreditManager.get();
         return vatCreditEntity != null ?
                 new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
                 new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;

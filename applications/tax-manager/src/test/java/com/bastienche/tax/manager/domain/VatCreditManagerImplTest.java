@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -34,8 +33,14 @@ class VatCreditManagerImplTest {
     }
 
     @Test
-    void getNewVatCreditTest() {
+    void getVatCreditIdTest() {
         vatCreditManager.get("5");
         Mockito.verify(vatCreditPersistance).get(Mockito.eq("5"));
+    }
+
+    @Test
+    void getVatCreditsTest() {
+        vatCreditManager.get();
+        Mockito.verify(vatCreditPersistance).get();
     }
 }

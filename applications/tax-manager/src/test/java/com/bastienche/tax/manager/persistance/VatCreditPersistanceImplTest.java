@@ -38,8 +38,14 @@ class VatCreditPersistanceImplTest {
     }
 
     @Test
-    void getVatCreditTest() {
+    void getVatCreditIdTest() {
         vatCreditPersistance.get("5");
         Mockito.verify(vatCreditDao).findById(Mockito.eq("5"));
+    }
+
+    @Test
+    void getVatCreditdTest() {
+        vatCreditPersistance.get();
+        Mockito.verify(vatCreditDao).findAll();
     }
 }

@@ -40,8 +40,14 @@ class VatCreditControllerTest {
     }
 
     @Test
-    void getNewVatCreditTest() throws UnknownVatCreditCategoryException {
-        vatCreditController.get("5");
+    void getVatCreditIdTest() throws UnknownVatCreditCategoryException {
+        vatCreditController.getId("5");
         Mockito.verify(vatCreditManager).get(Mockito.eq("5"));
+    }
+
+    @Test
+    void getVatCreditsTest() throws UnknownVatCreditCategoryException {
+        vatCreditController.get();
+        Mockito.verify(vatCreditManager).get();
     }
 }

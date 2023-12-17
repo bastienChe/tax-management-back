@@ -6,7 +6,7 @@ import com.bastienche.tax.manager.persistance.dao.VatCreditEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
 
 @Component
 public class VatCreditManagerImpl implements VatCreditManager {
@@ -24,6 +24,11 @@ public class VatCreditManagerImpl implements VatCreditManager {
     @Override
     public VatCreditEntity get(String id) {
         return vatCreditPersistance.get(id);
+    }
+
+    @Override
+    public List<VatCreditEntity> get() {
+        return vatCreditPersistance.get();
     }
 
 
