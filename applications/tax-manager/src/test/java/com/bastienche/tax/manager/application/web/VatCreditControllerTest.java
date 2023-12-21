@@ -33,7 +33,6 @@ class VatCreditControllerTest {
         long price = 10l;
         String categoryExplanation = "explanation";
 
-        VatCreditDto vatCreditDto = new VatCreditDto(date, VatCreditCategoryDto.ESSENCE, categoryExplanation, price, mockMultipartFile);
         vatCreditController.insert(price, "1992-04-23", "ESSENCE", categoryExplanation, mockMultipartFile);
 
         Mockito.verify(vatCreditManager).insert(Mockito.eq(new VatCredit(date, VatCreditCategory.ESSENCE, "explanation", 10, mockMultipartFile)));
@@ -49,5 +48,11 @@ class VatCreditControllerTest {
     void getVatCreditsTest() throws UnknownVatCreditCategoryException {
         vatCreditController.get();
         Mockito.verify(vatCreditManager).get();
+    }
+
+    @Test
+    void getVatCreditWithDateFilterTest() throws UnknownVatCreditCategoryException {
+        vatCreditController.getVatCreditWithDateFilter("2023-10-01", "2023-10-30");
+        Mockito.verify(vatCreditManager).getWithDateFilter(LocalDate.parse("2023-10-01"), LocalDate.parse("2023-10-30"));
     }
 }

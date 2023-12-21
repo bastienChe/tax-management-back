@@ -43,4 +43,10 @@ class VatCreditManagerImplTest {
         vatCreditManager.get();
         Mockito.verify(vatCreditPersistance).get();
     }
+
+    @Test
+    void getWithDateFilterTest() {
+        vatCreditManager.getWithDateFilter(LocalDate.parse("2023-10-01"), LocalDate.parse("2023-10-30"));
+        Mockito.verify(vatCreditPersistance).getWithDateFilter(LocalDate.parse("2023-10-01"), LocalDate.parse("2023-10-30"));
+    }
 }

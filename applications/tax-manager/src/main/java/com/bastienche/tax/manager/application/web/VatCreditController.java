@@ -29,11 +29,11 @@ public class VatCreditController {
     }
 
     @PostMapping
-    public ResponseEntity<VatCreditEntity> insert( @RequestParam("price") long price,
-                                                   @RequestParam("date") String date,
-                                                   @RequestParam("category") String category,
-                                                   @RequestParam("categoryExplanation") String categoryExplanation,
-                                                   @RequestParam("file") MultipartFile file) throws UnknownVatCreditCategoryException, IOException {
+    public ResponseEntity<VatCreditEntity> insert(@RequestParam("price") long price,
+                                                  @RequestParam("date") String date,
+                                                  @RequestParam("category") String category,
+                                                  @RequestParam("categoryExplanation") String categoryExplanation,
+                                                  @RequestParam("file") MultipartFile file) throws UnknownVatCreditCategoryException, IOException {
         VatCreditDto vatCreditDto = new VatCreditDto(LocalDate.parse(date), VatCreditCategoryDto.valueOf(category), categoryExplanation, price, file);
         VatCreditEntity vatCreditEntity = vatCreditManager.insert(VatCreditDto.VatCreditDtoTo(vatCreditDto));
         return new ResponseEntity<>(vatCreditEntity, HttpStatus.CREATED);
@@ -44,7 +44,7 @@ public class VatCreditController {
         VatCreditEntity vatCreditEntity = vatCreditManager.get(id);
         return vatCreditEntity != null ?
                 new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
-                new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
+                new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping()
@@ -52,7 +52,16 @@ public class VatCreditController {
         List<VatCreditEntity> vatCreditEntity = vatCreditManager.get();
         return vatCreditEntity != null ?
                 new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
-                new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
+                new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/date-between")
+    public ResponseEntity<List<VatCreditEntity>> getVatCreditWithDateFilter( @RequestParam("dateStart") String dateStart,
+                                                                    @RequestParam("dateEnd") String dateEnd) {
+        List<VatCreditEntity> vatCreditEntity = vatCreditManager.getWithDateFilter(LocalDate.parse(dateStart), LocalDate.parse(dateEnd));
+        return vatCreditEntity != null ?
+                new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
+                new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
 }

@@ -48,4 +48,10 @@ class VatCreditPersistanceImplTest {
         vatCreditPersistance.get();
         Mockito.verify(vatCreditDao).findAll();
     }
+
+    @Test
+    void getWithDateFilterdTest() {
+        vatCreditPersistance.getWithDateFilter(LocalDate.parse("2023-10-01"), LocalDate.parse("2023-10-30"));
+        Mockito.verify(vatCreditDao).findVatCreditBetween(LocalDate.parse("2023-10-01"), LocalDate.parse("2023-10-30"));
+    }
 }

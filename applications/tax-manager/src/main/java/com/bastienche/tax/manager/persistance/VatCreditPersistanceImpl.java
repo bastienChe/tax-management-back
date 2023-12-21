@@ -7,6 +7,7 @@ import com.bastienche.tax.manager.persistance.dao.VatCreditEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -33,6 +34,14 @@ public class VatCreditPersistanceImpl implements VatCreditPersistance {
     @Override
     public List<VatCreditEntity> get() {
         Iterable<VatCreditEntity> vatCreditEntities = vatCreditDao.findAll();
+        return StreamSupport
+                .stream(vatCreditEntities.spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VatCreditEntity> getWithDateFilter(LocalDate dateStart, LocalDate dateEnd) {
+        Iterable<VatCreditEntity> vatCreditEntities = vatCreditDao.findVatCreditBetween(dateStart, dateEnd);
         return StreamSupport
                 .stream(vatCreditEntities.spliterator(), false)
                 .collect(Collectors.toList());

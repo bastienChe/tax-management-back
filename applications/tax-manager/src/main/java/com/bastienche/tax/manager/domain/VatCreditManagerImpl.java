@@ -6,6 +6,7 @@ import com.bastienche.tax.manager.persistance.dao.VatCreditEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -29,6 +30,11 @@ public class VatCreditManagerImpl implements VatCreditManager {
     @Override
     public List<VatCreditEntity> get() {
         return vatCreditPersistance.get();
+    }
+
+    @Override
+    public List<VatCreditEntity> getWithDateFilter(LocalDate dateStart, LocalDate dateEnd) {
+        return vatCreditPersistance.getWithDateFilter(dateStart, dateEnd);
     }
 
 
