@@ -56,8 +56,8 @@ public class VatCreditController {
     }
 
     @GetMapping("/date-between")
-    public ResponseEntity<List<VatCreditEntity>> getVatCreditWithDateFilter( @RequestParam("dateStart") String dateStart,
-                                                                    @RequestParam("dateEnd") String dateEnd) {
+    public ResponseEntity<List<VatCreditEntity>> getVatCreditWithDateFilter(@RequestParam(name = "dateStart") String dateStart,
+                                                                            @RequestParam(name = "dateEnd") String dateEnd) {
         List<VatCreditEntity> vatCreditEntity = vatCreditManager.getWithDateFilter(LocalDate.parse(dateStart), LocalDate.parse(dateEnd));
         return vatCreditEntity != null ?
                 new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
