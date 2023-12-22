@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -47,4 +48,15 @@ public class VatCreditPersistanceImpl implements VatCreditPersistance {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public VatCreditEntity remove(String id) {
+        Optional<VatCreditEntity> vatCreditEntity = vatCreditDao.findById(id);
+        if (vatCreditEntity.isPresent() && !vatCreditEntity.isEmpty()) {
+            vatCreditDao.delete(vatCreditEntity.get());
+            return vatCreditEntity.get();
+        }
+        else {
+            return null;
+        }
+    }
 }

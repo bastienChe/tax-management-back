@@ -51,8 +51,14 @@ class VatCreditControllerTest {
     }
 
     @Test
-    void getVatCreditWithDateFilterTest() throws UnknownVatCreditCategoryException {
+    void getVatCreditWithDateFilterTest() {
         vatCreditController.getVatCreditWithDateFilter("2023-10-01", "2023-10-30");
         Mockito.verify(vatCreditManager).getWithDateFilter(LocalDate.parse("2023-10-01"), LocalDate.parse("2023-10-30"));
+    }
+
+    @Test
+    void removeVatCreditUnknownTest() {
+        vatCreditController.removeVatCredit("1");
+        Mockito.verify(vatCreditManager).remove("1");
     }
 }

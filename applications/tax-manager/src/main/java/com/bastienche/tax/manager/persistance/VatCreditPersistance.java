@@ -19,4 +19,6 @@ public interface VatCreditPersistance {
     List<VatCreditEntity> get();
 
     List<VatCreditEntity> getWithDateFilter(LocalDate dateStart, LocalDate dateEnd);
+
+    VatCreditEntity remove(String id);
 }

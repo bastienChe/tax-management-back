@@ -18,4 +18,6 @@ public interface VatCreditManager {
     List<VatCreditEntity> get() throws UnknownVatCreditCategoryException;
 
     List<VatCreditEntity> getWithDateFilter(LocalDate dateStart, LocalDate dateEnd);
+
+    VatCreditEntity remove(String id);
 }

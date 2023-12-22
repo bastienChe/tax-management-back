@@ -64,4 +64,12 @@ public class VatCreditController {
                 new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<VatCreditEntity> removeVatCredit(@PathVariable String id) {
+        VatCreditEntity vatCreditEntity = vatCreditManager.remove(id);
+        return vatCreditEntity != null ?
+                new ResponseEntity<>(vatCreditEntity, HttpStatus.OK) :
+                new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
 }

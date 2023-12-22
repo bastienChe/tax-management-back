@@ -37,5 +37,10 @@ public class VatCreditManagerImpl implements VatCreditManager {
         return vatCreditPersistance.getWithDateFilter(dateStart, dateEnd);
     }
 
+    @Override
+    public VatCreditEntity remove(String id) {
+        return vatCreditPersistance.remove(id);
+    }
+
 
 }
