@@ -3,7 +3,6 @@ package com.bastienche.tax.manager.persistance.dao;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Blob;
 import java.time.LocalDate;
 
 @Entity
@@ -32,6 +31,6 @@ public class VatCreditEntity {
     @Column(columnDefinition = "number(5)", nullable = false)
     private long price;
 
-    @Column(columnDefinition = "blob", nullable = false)
+    @Column(columnDefinition = "bytea", nullable = false)
     private byte[] picture;
 }
