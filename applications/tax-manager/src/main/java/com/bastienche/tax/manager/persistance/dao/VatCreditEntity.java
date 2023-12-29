@@ -16,21 +16,21 @@ public class VatCreditEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(columnDefinition = "number(10)", nullable = false)
+    @Column(columnDefinition = "INTEGER", nullable = false)
     private long idVatCredit;
 
-    @Column(columnDefinition = "Date", nullable = false)
+    @Column(columnDefinition = "DATE", nullable = false)
     private LocalDate date;
 
-    @Column(columnDefinition = "varchar(50)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(50)", nullable = false)
     private VatCreditCategoryEntity category;
 
-    @Column(columnDefinition = "varchar(50)")
+    @Column(columnDefinition = "VARCHAR(50)")
     private String categoryExplanation;
 
-    @Column(columnDefinition = "number(5)", nullable = false)
+    @Column(columnDefinition = "INTEGER", nullable = false)
     private long price;
 
-    @Column(columnDefinition = "bytea", nullable = false)
+    @Column(columnDefinition = "BYTEA", nullable = false)
     private byte[] picture;
 }
