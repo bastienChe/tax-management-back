@@ -1,0 +1,1 @@
+web: java -jar applications/tax-manager/target/tax-manager-0.0.1-SNAPSHOT.jar
