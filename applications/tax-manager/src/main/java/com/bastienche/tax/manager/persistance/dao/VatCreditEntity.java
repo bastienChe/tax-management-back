@@ -22,6 +22,7 @@ public class VatCreditEntity {
     @Column(columnDefinition = "DATE", nullable = false)
     private LocalDate date;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(50)", nullable = false)
     private VatCreditCategoryEntity category;
 
