@@ -7,12 +7,12 @@ import java.sql.Blob;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "VatCredit")
-@EqualsAndHashCode
+@Table(name = "vatcredit")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class VatCreditEntity {
 
     @Id
